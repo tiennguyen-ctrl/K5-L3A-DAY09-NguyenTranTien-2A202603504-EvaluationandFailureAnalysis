@@ -7,7 +7,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
   - PR giả lập `fixed`: `E-fixed-20261117-60f2`
   - PR giả lập `seeded_regression`: `E-seeded_regression-20261117-60f2`
   - Eval set SHA: `60f262b25b30` (cả ba report cùng SHA)
-- **Phiên bản:** code: nhánh `starter/d09`, commit `89f2cc7` (code và report; commit sau chỉ ghi lại số này) · eval set v1 (sha `60f262b25b30`) · metric_spec `1.0` · grader: `lab9/graders.py` tại commit `89f2cc7` · seeds 11/22/33/44/55 · LLM: MockLLM
+- **Phiên bản:** code: nhánh `starter/d09`, commit `8491320` (code và report; commit sau chỉ ghi lại số này) · eval set v1 (sha `60f262b25b30`) · metric_spec `1.0` · grader: `lab9/graders.py` tại commit `8491320` · seeds 11/22/33/44/55 · LLM: MockLLM
 - **Eval set:** v1, 14 item × 5 seed = 70 trial, nguồn `lab8_public` (T01–T14), nhãn riêng: `labels_v1.json`. Mỗi item có `failure_modes` (FM-01…FM-08, xem `docs/failure_taxonomy.md`) và `provenance.from_trace` = `C-xxx@11`.
 - **Metric & ngưỡng** (trích `config/metric_spec.yaml`):
 
