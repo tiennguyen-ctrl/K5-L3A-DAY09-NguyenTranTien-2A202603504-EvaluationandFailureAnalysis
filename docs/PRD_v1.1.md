@@ -57,7 +57,7 @@ Quy tắc: tiền và phê duyệt luôn chấm bằng code. Judge chỉ dùng c
 - [ ] 14 item: CI rộng, chỉ bắt được hồi quy lớn.
 - [ ] Judge replay trên CSV đã công khai, chưa có tập held-out mới.
 - [ ] Grader bắt 86.8% trace lỗi trong phép đo của tôi (165/190); phần chưa bắt là lỗi chỉ thấy ở `proposal_mismatch` khi host từ chối, chỉ `pass_rate` phát hiện.
-- [ ] Baseline sinh trên nhánh làm việc, chưa từ `main` đã merge.
+- [x] Baseline sinh trên máy Windows rồi commit vào `main`, không phải do CI sinh; job `eval-gate` chạy lại swarm trên Linux và `lab9.ci_check` xác nhận số liệu khớp (xem `docs/evidence.md`).
 - [ ] Chưa đo FM-09 (cross_principal); thuộc v2.
 
 ## 7. Khi nào lên v1.2
