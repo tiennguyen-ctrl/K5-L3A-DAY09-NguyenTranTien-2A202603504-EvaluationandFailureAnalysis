@@ -52,7 +52,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
   - **Judge replay**: judge chỉ được kiểm trên CSV đã công khai, chưa có tập held-out mới. Nhãn người cũng có thể sai (H-081).
   - Không đo trên người dùng thật; chưa đo FM-09 (cross_principal), chỉ có trong v2.
   - Cả 14 item đều gắn FM-01 do mọi claim chứa secret; số liệu theo FM không phản ánh tần suất thật.
-  - Baseline sinh ngay trên nhánh `starter/d09`, không phải từ `main` đã merge.
+  - Baseline sinh trên máy Windows rồi commit vào `main`, không phải do CI sinh; job `eval-gate` chạy lại swarm trên Linux và `lab9.ci_check` xác nhận số liệu khớp (lần chạy xanh: xem `docs/evidence.md`).
   - 5 anchor bắt buộc của M1 chưa đối chiếu với key của giảng viên.
 - **Khi nào tăng eval-set version:** khi thêm hoặc bỏ item (ví dụ biến một trace case thành item mới, hoặc gộp adversarial pack ở v2), hoặc đổi nhãn. Khi đó tăng `eval_set_version`, sinh lại baseline cùng eval set. Đổi ngưỡng cùng phiên bản eval set chỉ được **chặt hơn** (ratchet).
 
