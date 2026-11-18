@@ -57,6 +57,13 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
+def _write(path: Path, text: str) -> None:
+    """Always LF. .gitattributes stores these files as LF and eval_set_sha hashes the raw bytes:
+    a CRLF file written on Windows hashes differently from the LF file CI checks out, so the gate
+    would reject the committed baseline as "a different eval set"."""
+    path.write_bytes(text.replace("\r\n", "\n").encode("utf-8"))
+
+
 def sha12(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()[:12]
 
@@ -78,8 +85,8 @@ def build(source: Path = SOURCE) -> tuple[int, int]:
         })
         labels[claim["claim_id"]] = claim["expected"]
     ITEMS.parent.mkdir(parents=True, exist_ok=True)
-    ITEMS.write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
-    LABELS.write_text(json.dumps(labels, ensure_ascii=False, indent=2), encoding="utf-8")
+    _write(ITEMS, "".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+    _write(LABELS, json.dumps(labels, ensure_ascii=False, indent=2))
     return len(items), len(labels)
 
 
@@ -120,8 +127,8 @@ def build_v2(items_v1: Path = ITEMS, labels_v1: Path = LABELS, pack: Path = PACK
             "slices": slices_for(claim["expected"], True),
         })
         labels[claim["claim_id"]] = claim["expected"]
-    ITEMS_V2.write_text("".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items), encoding="utf-8")
-    LABELS_V2.write_text(json.dumps(labels, ensure_ascii=False, indent=2), encoding="utf-8")
+    _write(ITEMS_V2, "".join(json.dumps(i, ensure_ascii=False) + "\n" for i in items))
+    _write(LABELS_V2, json.dumps(labels, ensure_ascii=False, indent=2))
     return len(items), len(labels)
 
 

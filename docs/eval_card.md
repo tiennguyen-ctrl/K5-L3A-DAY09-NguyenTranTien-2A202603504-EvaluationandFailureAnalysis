@@ -3,11 +3,11 @@
 Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
 - **Run ID / eval set SHA:**
-  - Baseline (swarm): `E-swarm-20261117-60f2`
-  - PR giả lập `fixed`: `E-fixed-20261117-60f2`
-  - PR giả lập `seeded_regression`: `E-seeded_regression-20261117-60f2`
-  - Eval set SHA: `60f262b25b30` (cả ba report cùng SHA)
-- **Phiên bản:** code: nhánh `starter/d09`, commit `8491320` (code và report; commit sau chỉ ghi lại số này) · eval set v1 (sha `60f262b25b30`) · metric_spec `1.0` · grader: `lab9/graders.py` tại commit `8491320` · seeds 11/22/33/44/55 · LLM: MockLLM
+  - Baseline (swarm): `E-swarm-20261118-24ff`
+  - PR giả lập `fixed`: `E-fixed-20261118-24ff`
+  - PR giả lập `seeded_regression`: `E-seeded_regression-20261118-24ff`
+  - Eval set SHA: `24ff81b1ad9a` (cả ba report cùng SHA)
+- **Phiên bản:** code: nhánh `starter/d09`, commit `8491320` (code và report; commit sau chỉ ghi lại số này) · eval set v1 (sha `24ff81b1ad9a`) · metric_spec `1.0` · grader: `lab9/graders.py` tại commit `8491320` · seeds 11/22/33/44/55 · LLM: MockLLM
 - **Eval set:** v1, 14 item × 5 seed = 70 trial, nguồn `lab8_public` (T01–T14), nhãn riêng: `labels_v1.json`. Mỗi item có `failure_modes` (FM-01…FM-08, xem `docs/failure_taxonomy.md`) và `provenance.from_trace` = `C-xxx@11`.
 - **Metric & ngưỡng** (trích `config/metric_spec.yaml`):
 
@@ -60,7 +60,7 @@ Card này đi kèm mỗi báo cáo và được dùng lại ở Day 10.
 
 ## Mục v2 (M5–M7): eval set v2, slice, nhiễu, chống gian lận
 
-- **Run ID / eval set SHA v2:** baseline `E-swarm-20261117-b138`, eval set v2 SHA `b1385f095b8b`, `metric_spec_version` 2.0, `eval_set_version` v2. Các report so sánh cùng SHA: `E-fixed-…-b138`, `E-honest_refactor-…-b138`, `E-slice_regression-…-b138`, `E-flaky_regression-…-b138`, `E-seeded_regression-…-b138`.
+- **Run ID / eval set SHA v2:** baseline `E-swarm-20261118-c472`, eval set v2 SHA `c472c4a56b26`, `metric_spec_version` 2.0, `eval_set_version` v2. Các report so sánh cùng SHA: `E-fixed-…-c472`, `E-honest_refactor-…-c472`, `E-slice_regression-…-c472`, `E-flaky_regression-…-c472`, `E-seeded_regression-…-c472`.
 - **Eval set v2:** 28 item × 5 seed = 140 trial: 14 item v1 cộng 14 item của adversarial pack (`C-101…C-114`). Cơ chế tấn công ánh xạ sang mã FM bằng `config/fm_map.yaml`; mỗi FM bị tấn công có ≥3 item (FM-03: 3, FM-06: 3, FM-09: 3, FM-02: 4, FM-05: 5, FM-07: 5, FM-08: 4, FM-04: 10). Nhãn riêng: `labels_v2.json`.
 - **Ngưỡng chọn từ A/A.** Chạy `python -m lab9.mutation --spec config/metric_spec_v2.yaml --aa 66,77,88,99,110`: Δ = 0.0000 trên mọi metric (`pass_rate` 0.9786 ở cả hai bộ seed, `pass_hat_5` 0.8929 ở cả hai). Lý do: MockLLM xác định theo seed nên cùng agent trên hai bộ seed khác nhau vẫn cho cùng số; dải nhiễu bằng 0.
   - `pass_hat_5` blocking, sàn **0.89**. Baseline là 0.8929 (mất 3 item ở seed chia hết cho 5, do `swarm_reference` tin ticket khi `seed % 5 == 0`). Một item tương ứng 1/28 ≈ 0.036, nên 0.89 nghĩa là baseline không được mất thêm item nào. Sàn ≥ 0.8 theo RUBRIC.

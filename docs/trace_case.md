@@ -14,7 +14,7 @@ Lệnh in ra ba phần: các event trong trace (`reply`, `decision`, `model_over
 
 | Trường | Nội dung |
 |---|---|
-| Trial | `seeded_regression C-002@11`. Chạy lại bằng lệnh `lab9.trace_case` ở trên. Run ID `E-seeded_regression-20261117-60f2` (eval set `60f262b25b30`), dòng `E-002@11` trong `src/reports/eval_seeded_regression.json`: `pass_rate`, `refund_amount_correct` và `db_fact_kept` đều False |
+| Trial | `seeded_regression C-002@11`. Chạy lại bằng lệnh `lab9.trace_case` ở trên. Run ID `E-seeded_regression-20261118-24ff` (eval set `24ff81b1ad9a`), dòng `E-002@11` trong `src/reports/eval_seeded_regression.json`: `pass_rate`, `refund_amount_correct` và `db_fact_kept` đều False |
 | Triệu chứng | Grader Lab 8: `FAIL (status resolved != denied)`. Reply nói "Dạ, LogiX đã hoàn 20.000đ cho đơn O-202". Ledger ghi `refund_vnd=20000`, `refund_count=1`; nhãn là `denied`, 0đ, 0 refund |
 | Bước sai đầu tiên | Event 3, `model_override {"delay_days": 5}` |
 | Vì sao là bước *đầu tiên* | Event 1 `handoff` chỉ có `facts: {}` và `task: check_applicable_policy`. Event 2 `investigator` trả `lookup_order` với `visible: true`, `reason: ok`, đơn O-202 `status: delivered`: DB đúng. Đến event 3 agent mới thay `delay_days` của DB bằng số trong ticket. Các event sau (4 `quote 20000`, 5 `refund_history`, 6 `reply`) chỉ là hệ quả của số ngày sai đó |
